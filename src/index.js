@@ -1,6 +1,9 @@
 var indexOf = require("index_of");
 
 
+var InflectorPrototype;
+
+
 module.exports = Inflector;
 
 
@@ -10,11 +13,13 @@ function Inflector() {
     this.uncountables = [];
 }
 
+InflectorPrototype = Inflector.prototype;
+
 Inflector.create = function() {
     return new Inflector();
 };
 
-Inflector.prototype.clear = function() {
+InflectorPrototype.clear = function() {
 
     this.plurals.length = 0;
     this.singulars.length = 0;
@@ -23,7 +28,7 @@ Inflector.prototype.clear = function() {
     return this;
 };
 
-Inflector.prototype.uncountable = function() {
+InflectorPrototype.uncountable = function() {
     var uncountables = this.uncountables,
         i = -1,
         il = arguments.length - 1;
@@ -34,21 +39,21 @@ Inflector.prototype.uncountable = function() {
     return this;
 };
 
-Inflector.prototype.plural = function(rule, replacement) {
+InflectorPrototype.plural = function(rule, replacement) {
     var plurals = this.plurals;
 
     plurals[plurals.length] = [rule, replacement];
     return this;
 };
 
-Inflector.prototype.singular = function(rule, replacement) {
+InflectorPrototype.singular = function(rule, replacement) {
     var singulars = this.singulars;
 
     singulars[singulars.length] = [rule, replacement];
     return this;
 };
 
-Inflector.prototype.irregular = function(singular, plural) {
+InflectorPrototype.irregular = function(singular, plural) {
 
     singular = singular.toLowerCase();
     plural = plural.toLowerCase();
@@ -59,7 +64,7 @@ Inflector.prototype.irregular = function(singular, plural) {
     return this;
 };
 
-Inflector.prototype.pluralize = function(word) {
+InflectorPrototype.pluralize = function(word) {
     var plurals = this.plurals,
         result = word,
         i = plurals.length,
@@ -80,14 +85,14 @@ Inflector.prototype.pluralize = function(word) {
     return word;
 };
 
-Inflector.prototype.isPlural = function(word) {
+InflectorPrototype.isPlural = function(word) {
 
     return this.singularize(word) !== word;
 };
 
-Inflector.prototype.is_plural = Inflector.prototype.isPlural;
+InflectorPrototype.is_plural = InflectorPrototype.isPlural;
 
-Inflector.prototype.singularize = function(word) {
+InflectorPrototype.singularize = function(word) {
     var singulars = this.singulars,
         result = word,
         i = singulars.length,
@@ -108,12 +113,12 @@ Inflector.prototype.singularize = function(word) {
     return word;
 };
 
-Inflector.prototype.isSingular = function(word) {
+InflectorPrototype.isSingular = function(word) {
 
     return this.pluralize(word) !== word;
 };
 
-Inflector.prototype.is_singular = Inflector.prototype.isSingular;
+InflectorPrototype.is_singular = InflectorPrototype.isSingular;
 
 function replace(word, rule, replacement) {
     if (rule.test(word)) {
