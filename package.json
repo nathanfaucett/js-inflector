@@ -8,7 +8,6 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "bench": "node bench",
     "test": "npm run test-node",
     "test-node": "node ./test | ./node_modules/.bin/tap-spec",
     "test-node-raw": "node ./test",
@@ -19,7 +18,7 @@
     "inflector.js"
   ],
   "author": "Nathan Faucett",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "^0.4.5",
