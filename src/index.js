@@ -1,4 +1,4 @@
-var indexOf = require("index_of");
+var indexOf = require("@nathanfaucett/index_of");
 
 
 var InflectorPrototype;
